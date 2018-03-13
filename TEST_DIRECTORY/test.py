@@ -10,8 +10,8 @@ CS294_playlist_url = "https://www.youtube.com/watch?v=4ZHwu0uut3k"
 
 
 def get_playlist_links(playlist_url):
-    # PROXY - https://stackoverflow.com/questions/5620263/using-an-http-proxy-python
-    # proxy_support = ProxyHandler({"http": "x.x.x.x:port"})
+    ### PROXY - https://stackoverflow.com/questions/5620263/using-an-http-proxy-python
+    # proxy_support = ProxyHandler({"http": "10.156.237.254:8080"})
     # opener = build_opener(proxy_support)
     # install_opener(opener)
 

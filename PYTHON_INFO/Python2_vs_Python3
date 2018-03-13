@@ -1,0 +1,37 @@
+Difference
+        Python2
+                    Python 3
+
+1. Brackets in print:
+        print 'Python', python_version()
+                    print('Python', python_version())
+2. input() function contain always string
+        >>> my_input = input('enter a number: ')
+        enter a number: 123
+        >>> type(my_input)
+        <type 'int'>
+        >>> my_input = raw_input('enter a number: ')
+        enter a number: 123
+        >>> type(my_input)
+        <type 'str'>
+                    >>> my_input = input('enter a number: ')
+                    enter a number: 123
+                    >>> type(my_input)
+                    <class 'str'>
+3. Handling exceptions
+        except NameError, err:
+                    except NameError as err:
+4. Banker's Rounding - rounding to nearest even number
+        >>> round(15.5)
+        16
+        >>> round(16.5)
+        17
+                    >>> round(15.5)
+                    16
+                    >>> round(16.5)
+                    16
+5. Integer division
+        >>> print '3 / 2 =', 3 / 2
+        3 / 2 = 1
+                    >>> print('3 / 2 =', 3 / 2)
+                    3 / 2 = 1.5
