@@ -1,7 +1,7 @@
 import urllib.parse
 import urllib.request
 import re
-import time
+
 time1 = ''
 
 
@@ -36,5 +36,4 @@ def toggle_geom(self, event):
     print(geom, self._geom)
     self.master.geometry(self._geom)
     self._geom = geom
-
 
