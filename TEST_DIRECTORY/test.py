@@ -1,15 +1,20 @@
 #!/usr/bin/env python
 import os, sys, time
 import argparse
-from urllib.request import urlopen
+from urllib.request import *
 
 import pytube  # pip install pytube
 
 
-CS294_playlist_url = "https://www.youtube.com/playlist?list=PLkufxprtg8Qkb-xzwe4vMbamCqaQFEF7c&disable_polymer=true"
+CS294_playlist_url = "https://www.youtube.com/watch?v=4ZHwu0uut3k"
 
 
 def get_playlist_links(playlist_url):
+    # PROXY - https://stackoverflow.com/questions/5620263/using-an-http-proxy-python
+    # proxy_support = ProxyHandler({"http": "x.x.x.x:port"})
+    # opener = build_opener(proxy_support)
+    # install_opener(opener)
+
     page_elements = urlopen(playlist_url).readlines()
     video_elements = [el for el in page_elements if 'pl-video-title-link' in el]  # Filter out unnecessary lines
     video_urls = [v.split('href="',1)[1].split('" ',1)[0] for v in video_elements]  # Grab the video urls from the elements
