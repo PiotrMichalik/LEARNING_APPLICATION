@@ -32,7 +32,7 @@ class window(tk.Frame):
         self.time = tk.Label(self, text=time_string)
         self.tick()
         self.ip = tk.Label(self, text="")
-        #content_methods.ipv4(self)
+        content_methods.ipv4(self)
         self.prompt = tk.Label(self, text="Enter a number:", anchor="w")
         self.entry = tk.Entry(self)
         self.submit = tk.Button(self, text="Submit", command=content_methods.calculate)
