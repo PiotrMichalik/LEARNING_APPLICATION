@@ -2,7 +2,7 @@ import urllib.parse
 import urllib.request
 import re
 from tkinter.filedialog import askdirectory
-import YOUTUBE_PLAYLIST_DOWNLOADER_from_console as youtube_module
+from YOUTUBE_PLAYLIST_DOWNLOADER_from_console import yt_playlist_downloader as youtube_module
 
 time1 = ''
 
@@ -49,3 +49,4 @@ def on_click(self):
         print("None")
     else:
         print("Directory: "+directory_name)
+        youtube_module.run()
