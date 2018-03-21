@@ -1,6 +1,8 @@
 import urllib.parse
 import urllib.request
 import re
+from tkinter.filedialog import askdirectory
+import YOUTUBE_PLAYLIST_DOWNLOADER_from_console as youtube_module
 
 time1 = ''
 
@@ -12,8 +14,9 @@ def ipv4(self):
     resp = urllib.request.urlopen(url)
     respData = resp.read()
     paragraphs = re.findall(
-        r'((>^[0-9]|[0-9][0-9]|[0-9][0-9][0-9]).([0-9]|[0-9][0-9]|[0-9][0-9][0-9]).([0-9]|[0-9][0-9]|[0-9][0-9][0-9]).([0-9][0-9][0-9]|[0-9][0-9]|[0-9]$<))',
+        r'((>[1-9]|[1-9][0-9]|[1][0-9][0-9]|[2][0-5][0-5]).([1-9]|[1-9][0-9]|[1][0-9][0-9]|[2][0-5][0-5]).([1-9]|[1-9][0-9]|[1][0-9][0-9]|[2][0-5][0-5]).([1][0-9][0-9]|[2][0-5][0-5]|[1-9][0-9]|[1-9]|$<))',
         str(respData))
+    print(paragraphs)
     self.ip.config(text="Public IP: " + paragraphs[0][0])
 
 
@@ -31,9 +34,18 @@ def calculate(self):
     self.output.configure(text=result)
 
 
-def toggle_geom(self, event):
+def toggle_geom(self):
     geom = self.master.winfo_geometry()
     print(geom, self._geom)
     self.master.geometry(self._geom)
     self._geom = geom
 
+
+def on_click(self):
+    print("Image clicked")
+    directory_name = askdirectory(title="Choose a directory.")
+
+    if directory_name == "":
+        print("None")
+    else:
+        print("Directory: "+directory_name)
