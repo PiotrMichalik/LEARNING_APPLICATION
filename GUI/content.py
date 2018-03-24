@@ -7,19 +7,16 @@ from GUI.METHODS import content_methods
 from PIL import Image, ImageTk
 import time
 
-import sys
-import PyQt5
-
 path_images="\GUI\Images\\"
 youtube_image_name="Youtube.jpg"
 download_music_to_folder="D:\Muzyka"
 time1 = ''
 
-class window(tk.Frame):
+
+class Window(tk.Frame):
     def __init__(self,master):
 
         tk.Frame.__init__(self, master=None)
-
 
         # size and dimension
         self.master = master
@@ -44,14 +41,14 @@ class window(tk.Frame):
         self.submit = tk.Button(self, text="Submit", command=content_methods.calculate)
         self.output = tk.Label(self, text="")
 
-        ##Youtube
+        # Youtube
         path_program = os.path.dirname(os.getcwd())
         yt_img = ImageTk.PhotoImage(Image.open(path_program+path_images+youtube_image_name))
 
         self.YT_img = tk.Label(self, image=yt_img)
         self.YT_img.image = yt_img
 
-        ## excel
+        # excel
         self.tree = ttk.Treeview(self)
 
         self.tree["columns"] = ("one", "two")
@@ -65,21 +62,21 @@ class window(tk.Frame):
         id2 = self.tree.insert("", 1, "dir2", text="Dir 2")
         self.tree.insert(id2, "end", "dir 2", text="sub dir 2", values=("2A", "2B"))
 
-        ##alternatively:
+        # alternatively:
         self.tree.insert("", 3, "dir3", text="Dir 3")
         self.tree.insert("dir3", 3, text=" sub dir 3", values=("3A", " 3B"))
 
         # lay the widgets out on the screen.
-        self.time.pack(side="top", fill="x")
-        self.ip.pack(side="top", fill="x")
-        self.prompt.pack(side="top", fill="x")
-        self.entry.pack(side="top", fill="x", padx=20)
-        self.YT_img.pack(side="top", fill="x")
-        self.output.pack(side="top", fill="x", expand=True)
-        self.submit.pack(side="right")
-        self.tree.pack(side="bottom",expand=1)
+        self.time.grid(row=1, column=1, padx=0, pady=0)
+        self.ip.grid(row=1, column=5, padx=0, pady=0)
+        self.prompt.grid(row=2, column=1, columnspan=2, padx=10, pady=10)
+        self.entry.grid(row=2, column=3, columnspan=1, padx=10, pady=10)
+        self.output.grid(row=3, column=4, columnspan=6, padx=10, pady=10)
+        self.submit.grid(row=2, column=5, columnspan=1, padx=10, pady=10)
+        self.YT_img.grid(row=4, column=1, columnspan=1, padx=10, pady=10)
+        self.tree.grid(row=6, column=2, columnspan=4, rowspan=4, padx=10, pady=10)
 
-        #clickable youtube image
+        # clickable youtube image
         self.YT_img.bind('<Button-1>', content_methods.on_click)
 
        # self.scrollbar = tk.Scrollbar(self.tree)

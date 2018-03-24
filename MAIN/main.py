@@ -9,6 +9,6 @@ from GUI import content
 if __name__ == "__main__":
 
     root = tk.Tk()
-    content.window(root).pack(fill="both", expand=True)
+    content.Window(root).pack(fill="both", expand=True)
     root.mainloop()
     ## GIT

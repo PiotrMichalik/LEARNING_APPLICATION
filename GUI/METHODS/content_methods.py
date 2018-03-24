@@ -9,7 +9,6 @@ time1 = ''
 
 
 
-
 def ipv4(self):
     url = 'http://ip4.me/'
     resp = urllib.request.urlopen(url)
@@ -21,10 +20,10 @@ def ipv4(self):
     self.ip.config(text="Public IP: " + paragraphs[0][0])
 
 
-
 def calculate(self):
     # get the value from the input widget, convert
     # it to an int, and do a calculation
+    print(self.entry)
     try:
         i = int(self.entry.get())
         result = "%s*2=%s" % (i, i * 2)
@@ -49,21 +48,39 @@ def on_click(self):
     if directory_name == "":
         print("None")
     else:
-
         print("Directory: "+directory_name)
-        #youtube_module.run()
-        new_window(self)
+        new_window(self,directory_name)
 
 
-def new_window(self):
+def new_window(self,directory_name):
     self.t = tk.Tk()
     self.t.wm_title("Insert some info")
     self.l = tk.Label(self.t, text="Insert playlist")
-    self.l.entry = tk.Entry(self.t)
-    self.l.playlist = tk.Label(self.t, text="Insert any")
-    self.l.entry2 = tk.Entry(self.t)
+    self.l.entry_playlist = tk.Entry(self.t)
 
-    self.l.pack(side="left", expand=True, padx=20, pady=20)
-    self.l.entry.pack(side="left", expand=True, padx=20, pady=20)
-    self.l.playlist.pack(side="left", expand=True, padx=20, pady=20)
-    self.l.entry2.pack(side="left", expand=True, padx=20, pady=20)
+    self.l.any = tk.Label(self.t, text="Insert any")
+    self.l.entry2 = tk.Entry(self.t)
+    self.l.submit = tk.Button(self.t, text="Submit", command=lambda: set_values_from_window(self, self.l.entry_playlist.get(), directory_name))
+    self.l.output = tk.Text(self.t)
+
+
+    self.l.grid(row=1, column=1, padx=20, pady=20)
+    self.l.entry_playlist.grid(row=1, column=2, padx=20, pady=20)
+    self.l.any.grid(row=2, column=1, padx=20, pady=20)
+    self.l.entry2.grid(row=2, column=2, padx=20, pady=20)
+    self.l.submit.grid(row=3, column=2)
+    self.l.output.grid(row=4, column=1, rowspan=10, columnspan=5)
+
+
+def set_values_from_window(self, playlist_url, directory_name):
+    print("#TUTAJ")
+
+    try:
+        print(playlist_url)
+        print(directory_name)
+        youtube_module.playlist_url = playlist_url
+        youtube_module.music_destination_folder = directory_name
+        if(youtube_module.playlist_url != '') and (youtube_module.music_destination_folder != ''):
+            youtube_module.run(self)
+    except ValueError:
+        print("nic")
