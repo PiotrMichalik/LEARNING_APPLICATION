@@ -23,11 +23,11 @@ class Window(tk.Frame):
         menubar.init_window(self)
 
         pad = 3
-        self._geom = '200x200+0+0'
+        self._geom = '700x700+0+0'
         master.geometry("{0}x{1}+0+0".format(
             master.winfo_screenwidth() - pad, master.winfo_screenheight() - pad))
-        master.bind('<Escape>', content_methods.toggle_geom)
-        master.maxsize(1000,400)
+        master.bind('<Escape>', content_methods.WindowFrameMethods.toggle_geom(self))
+        master.maxsize(1000, 400)
 
         # create a prompt, an input box, an output label,
         # and a button to do the computation
@@ -35,11 +35,12 @@ class Window(tk.Frame):
         self.time = tk.Label(self, text=time_string)
         self.tick()
         self.ip = tk.Label(self, text="")
-        content_methods.ipv4(self)
+        content_methods.HTML.ipv4(self)
         self.prompt = tk.Label(self, text="Enter a number:", anchor="w")
         self.entry = tk.Entry(self)
-        self.submit = tk.Button(self, text="Submit", command=content_methods.calculate)
         self.output = tk.Label(self, text="")
+        self.submit = tk.Button(self, text="Submit", command=lambda: content_methods.Calculations.calculate(self))
+
 
         # Youtube
         path_program = os.path.dirname(os.getcwd())
@@ -71,13 +72,13 @@ class Window(tk.Frame):
         self.ip.grid(row=1, column=5, padx=0, pady=0)
         self.prompt.grid(row=2, column=1, columnspan=2, padx=10, pady=10)
         self.entry.grid(row=2, column=3, columnspan=1, padx=10, pady=10)
-        self.output.grid(row=3, column=4, columnspan=6, padx=10, pady=10)
+        self.output.grid(row=2, column=4, columnspan=1, padx=10, pady=10)
         self.submit.grid(row=2, column=5, columnspan=1, padx=10, pady=10)
         self.YT_img.grid(row=4, column=1, columnspan=1, padx=10, pady=10)
         self.tree.grid(row=6, column=2, columnspan=4, rowspan=4, padx=10, pady=10)
 
         # clickable youtube image
-        self.YT_img.bind('<Button-1>', content_methods.on_click)
+        self.YT_img.bind('<Button-1>', content_methods.Youtube.choose_directory_after_image_click)
 
        # self.scrollbar = tk.Scrollbar(self.tree)
        # self.scrollbar.pack(side="right", fill="y")
